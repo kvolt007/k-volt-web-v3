@@ -633,6 +633,73 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--y);outline-offset:4
   .whatsapp-float:hover{transform:none}
 }
 
+
+/* Contacto / formulario */
+.contact{
+  padding:90px 5vw;
+  background:var(--y);
+  color:#000;
+  display:grid;
+  grid-template-columns:.82fr 1.18fr;
+  gap:64px;
+  align-items:center;
+}
+.contact-copy h2{font-size:clamp(3rem,6vw,6.2rem);line-height:.9;letter-spacing:-.06em;margin:8px 0 20px}
+.contact-copy>p{max-width:650px;font-size:1.05rem;line-height:1.6;margin:0}
+.contact-benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:40px 0 30px}
+.contact-benefit{display:flex;align-items:center;gap:10px;padding:10px 18px 10px 0;border-right:1px solid rgba(0,0,0,.14);font-size:.84rem;line-height:1.25}
+.contact-benefit:last-child{border-right:0}
+.contact-benefit svg{width:25px;height:25px;flex:0 0 25px;stroke:#000;fill:none;stroke-width:1.8}
+.contact-whatsapp{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 24px;border-radius:18px;background:#0b0e11;color:#fff;box-shadow:0 16px 38px rgba(0,0,0,.13)}
+.contact-whatsapp-main{display:flex;align-items:center;gap:16px}
+.contact-whatsapp-icon{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:#25D366;color:#fff;flex:0 0 48px}
+.contact-whatsapp-icon svg{width:27px;height:27px;fill:currentColor}
+.contact-whatsapp small{display:block;color:#a8adb2;font-size:.78rem;margin-top:4px}
+.contact-whatsapp strong{white-space:nowrap;font-size:1rem}
+.contact-form-card{background:linear-gradient(145deg,#11161a,#0b0e11);color:#f3f3f1;border:1px solid rgba(255,255,255,.08);border-radius:26px;padding:32px;box-shadow:0 28px 65px rgba(0,0,0,.2)}
+.contact-form-head{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:28px}
+.contact-form-title{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.03em}
+.contact-form-title:before{content:"";width:36px;height:3px;background:var(--y);border-radius:99px}
+.contact-form-head small{color:#777;font-size:.68rem;letter-spacing:.12em}
+.contact-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px 22px}
+.form-field{display:grid;gap:8px}
+.form-field.full{grid-column:1/-1}
+.form-field label{font-size:.9rem;font-weight:700}
+.form-field input,.form-field select,.form-field textarea{
+  width:100%;border:1px solid rgba(255,255,255,.16);border-radius:13px;background:#151a1f;color:#fff;
+  padding:15px 16px;font:inherit;outline:none;transition:border-color .2s ease,box-shadow .2s ease,background .2s ease
+}
+.form-field input::placeholder,.form-field textarea::placeholder{color:#70767c}
+.form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:rgba(255,204,0,.75);box-shadow:0 0 0 3px rgba(255,204,0,.10);background:#171d22}
+.form-field select{appearance:auto}
+.form-field textarea{min-height:120px;resize:vertical}
+.form-honeypot{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;overflow:hidden!important}
+.contact-form-bottom{display:grid;grid-template-columns:1fr minmax(220px,.8fr);gap:24px;align-items:center;margin-top:26px}
+.form-privacy{display:flex;align-items:center;gap:10px;color:#8f959a;font-size:.78rem;line-height:1.4}
+.form-privacy svg{width:18px;height:18px;stroke:#a4a8ab;fill:none;stroke-width:1.8;flex:0 0 18px}
+.contact-submit{border:0;border-radius:13px;background:var(--y);color:#000;padding:17px 20px;font:inherit;font-weight:950;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:transform .2s ease,filter .2s ease}
+.contact-submit:hover{transform:translateY(-1px);filter:brightness(1.04)}
+.contact-submit svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2}
+.form-status{display:none;grid-column:1/-1;padding:12px 14px;border-radius:11px;font-size:.88rem;line-height:1.4}
+.form-status.show{display:block}
+.form-status.ok{background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.32);color:#bdf7d2}
+.form-status.error{background:rgba(255,110,86,.10);border:1px solid rgba(255,110,86,.30);color:#ffc5bb}
+@media(max-width:1050px){
+  .contact{grid-template-columns:1fr;gap:42px}
+  .contact-benefits{max-width:720px}
+}
+@media(max-width:700px){
+  .contact{padding:74px 18px}
+  .contact-benefits{grid-template-columns:1fr 1fr;gap:12px}
+  .contact-benefit{border-right:0;padding:8px 0}
+  .contact-whatsapp{align-items:flex-start;flex-direction:column}
+  .contact-form-card{padding:22px;border-radius:20px}
+  .contact-form-head{align-items:flex-start;flex-direction:column}
+  .contact-form-grid{grid-template-columns:1fr}
+  .form-field.full{grid-column:auto}
+  .contact-form-bottom{grid-template-columns:1fr}
+}
+
 </style>
 </head>
 <body>
@@ -797,9 +864,75 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--y);outline-offset:4
   </div>
 </section>
 
+
 <section class="contact" id="contacto">
-  <div class="reveal"><small>ROSARIO + GRAN ROSARIO</small><h2>Contanos qué necesitás resolver.</h2><p>Casa, obra, comercio, empresa o aire acondicionado. Mandanos una descripción y, si podés, una foto.</p></div>
-  <div class="contactbox reveal"><a href="https://wa.me/543413217314" target="_blank" rel="noopener"><span>WhatsApp</span><strong>+54 341 3 217314 ↗</strong></a><a href="mailto:contacto.kvolt@gmail.com"><span>Email</span><strong>contacto.kvolt@gmail.com</strong></a></div>
+  <div class="contact-copy reveal">
+    <small>ROSARIO + GRAN ROSARIO</small>
+    <h2>Contanos qué necesitás resolver.</h2>
+    <p>Casa, obra, comercio, empresa o aire acondicionado. Te asesoramos y te respondemos a la brevedad.</p>
+
+    <div class="contact-benefits" aria-label="Beneficios K-Volt">
+      <div class="contact-benefit"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 5 14h6l-1 8 9-13h-6l0-7Z"/></svg><span>Soluciones<br>a medida</span></div>
+      <div class="contact-benefit"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 6v6c0 5-3.3 8-8 9-4.7-1-8-4-8-9V6l8-3Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg><span>Trabajo<br>seguro</span></div>
+      <div class="contact-benefit"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm8 0a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/><path d="M2 21v-2a5 5 0 0 1 5-5h2a5 5 0 0 1 5 5v2m1-7h2a5 5 0 0 1 5 5v2"/></svg><span>Atención<br>personalizada</span></div>
+      <div class="contact-benefit"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v6l4 2"/></svg><span>Respuesta<br>rápida</span></div>
+    </div>
+
+    <a class="contact-whatsapp" href="https://wa.me/543413217314" target="_blank" rel="noopener">
+      <div class="contact-whatsapp-main">
+        <span class="contact-whatsapp-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3.2A12.6 12.6 0 0 0 5.2 22.3L3.6 28.8l6.7-1.5A12.6 12.6 0 1 0 16 3.2Zm0 22.7a10 10 0 0 1-5.1-1.4l-.4-.2-4 .9 1-3.8-.3-.4a10 10 0 1 1 8.8 4.9Zm5.7-7.5c-.3-.2-1.8-.9-2.1-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8.2 8.2 0 0 1-2.5-1.5 9.2 9.2 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.7l.5-.6.3-.6c.1-.2 0-.4 0-.6l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.2-1.2 2.9 1.2 3.3 1.4 3.5c.2.2 2.4 3.7 5.9 5.1.8.4 1.5.6 2 .7.8.3 1.6.2 2.2.1.7-.1 1.8-.8 2.1-1.5.3-.7.3-1.3.2-1.5-.1-.1-.3-.2-.6-.4Z"/></svg></span>
+        <span><b>¿Preferís escribirnos por WhatsApp?</b><small>Te respondemos más rápido.</small></span>
+      </div>
+      <strong>+54 341 3 217314 ↗</strong>
+    </a>
+  </div>
+
+  <form class="contact-form-card reveal" id="contactForm" action="send-mail.php" method="post">
+    <div class="contact-form-head">
+      <div class="contact-form-title">SOLICITÁ TU PRESUPUESTO</div>
+      <small>COMPLETÁ EL FORMULARIO</small>
+    </div>
+
+    <div class="contact-form-grid">
+      <div class="form-field">
+        <label for="nombre">Nombre *</label>
+        <input id="nombre" name="nombre" type="text" autocomplete="name" placeholder="Tu nombre" maxlength="80" required>
+      </div>
+      <div class="form-field">
+        <label for="telefono">Teléfono / WhatsApp *</label>
+        <input id="telefono" name="telefono" type="tel" autocomplete="tel" inputmode="tel" placeholder="Ej: 341 123 4567" maxlength="40" required>
+      </div>
+      <div class="form-field">
+        <label for="email">Email *</label>
+        <input id="email" name="email" type="email" autocomplete="email" placeholder="tu@email.com" maxlength="120" required>
+      </div>
+      <div class="form-field">
+        <label for="servicio">¿Qué tipo de asistencia necesitás? *</label>
+        <select id="servicio" name="servicio" required>
+          <option value="" selected disabled>Seleccionar servicio</option>
+          <option>Asistencia para mi hogar</option>
+          <option>Obra nueva / ampliación</option>
+          <option>Asistencia para mi comercio o empresa</option>
+          <option>Climatización / aire acondicionado</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="form-field full">
+        <label for="mensaje">Contanos brevemente tu consulta *</label>
+        <textarea id="mensaje" name="mensaje" placeholder="Escribí los detalles de tu consulta..." maxlength="2000" required></textarea>
+      </div>
+      <div class="form-honeypot" aria-hidden="true">
+        <label for="empresa_web">Empresa</label>
+        <input id="empresa_web" name="empresa_web" type="text" tabindex="-1" autocomplete="off">
+      </div>
+      <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+    </div>
+
+    <div class="contact-form-bottom">
+      <div class="form-privacy"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span>Tus datos se utilizan únicamente para responder tu consulta.</span></div>
+      <button class="contact-submit" type="submit">ENVIAR CONSULTA <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 18-8-7 18-3-7-8-3Z"/><path d="m11 14 4-4"/></svg></button>
+    </div>
+  </form>
 </section>
 </main>
 
@@ -877,6 +1010,32 @@ if (obrasFrame) {
     const rect = obrasFrame.getBoundingClientRect();
     const visible = rect.top < window.innerHeight && rect.bottom > 0;
     if (visible) setTimeout(startObrasAnimation, 180);
+  });
+}
+
+
+const contactForm = document.getElementById('contactForm');
+const formStatus = document.getElementById('formStatus');
+if (contactForm && formStatus) {
+  const params = new URLSearchParams(window.location.search);
+  const contactState = params.get('contact');
+  const showFormStatus = (message, type) => {
+    formStatus.textContent = message;
+    formStatus.className = 'form-status show ' + type;
+  };
+  if (contactState === 'ok') {
+    showFormStatus('Consulta enviada. Gracias por contactarnos; te responderemos a la brevedad.', 'ok');
+    history.replaceState({}, '', window.location.pathname + '#contacto');
+  } else if (contactState === 'error') {
+    showFormStatus('No pudimos enviar la consulta. Probá nuevamente o escribinos por WhatsApp.', 'error');
+    history.replaceState({}, '', window.location.pathname + '#contacto');
+  }
+
+  contactForm.addEventListener('submit', (event) => {
+    if (window.location.hostname.endsWith('github.io')) {
+      event.preventDefault();
+      showFormStatus('Vista previa: el envío del formulario se habilita en el sitio alojado en Hostinger.', 'error');
+    }
   });
 }
 
