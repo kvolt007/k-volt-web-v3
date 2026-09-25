@@ -216,3 +216,24 @@ footer{border-top:1px solid #ffffff12;padding:38px 5vw;display:flex;justify-cont
   .coverage-hero-copy{min-height:auto;padding:12px 0 0}
   .coverage-hero-map{min-height:0;aspect-ratio:4/3;border-radius:18px}
 }
+
+/* Compact coverage link on service pages */
+.local.local-coverage-link{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:28px;
+  align-items:center;
+}
+.local.local-coverage-link h2{margin-top:0}
+.local.local-coverage-link p{max-width:820px}
+.coverage-link-btn{
+  white-space:nowrap;
+  background:#0a0a0a;
+  color:#fff;
+  border:1px solid rgba(0,0,0,.15);
+}
+.coverage-link-btn:hover{background:#1a1a1a}
+@media(max-width:760px){
+  .local.local-coverage-link{grid-template-columns:1fr}
+  .coverage-link-btn{justify-self:start}
+}
