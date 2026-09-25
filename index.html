@@ -286,9 +286,10 @@ footer{padding:45px 5vw;display:flex;justify-content:space-between;gap:20px;colo
 .new-build-heading{
   padding:12px 10px 20px;
   display:flex;
-  align-items:end;
-  gap:18px;
-  flex-wrap:wrap;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:8px;
+  flex-wrap:nowrap;
 }
 .new-build-heading span{
   color:#ffcc00;
@@ -783,7 +784,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--y);outline-offset:4
 .seo-faq details[open] summary:after{content:"−"}
 .seo-faq-answer{padding:0 0 25px;color:#aaa;line-height:1.7;max-width:900px}
 .seo-faq-answer a{color:var(--y);font-weight:800}
-.new-build-seo-link{margin-left:auto;color:#ffcc00;font-size:.8rem;font-weight:900}
+.new-build-seo-link{margin-left:0;color:#ffcc00;font-size:.8rem;font-weight:900}
 @media(max-width:600px){.seo-faq{padding:80px 18px}.new-build-seo-link{width:100%;margin-left:0}}
 
 
@@ -1247,6 +1248,22 @@ const contactSendCheck = document.getElementById('contactSendCheck');
 
 if (contactForm && formStatus && contactSendOverlay) {
   const submitButton = contactForm.querySelector('.contact-submit');
+  const serviceSelect = document.getElementById('servicio');
+
+  // Si el usuario llega desde una subpágina de servicio, preseleccionar el motivo.
+  const serviceParam = new URLSearchParams(window.location.search).get('servicio');
+  const serviceMap = {
+    hogar: 'Asistencia para mi hogar',
+    obras: 'Obra nueva / ampliación',
+    empresa: 'Asistencia para mi comercio o empresa',
+    climatizacion: 'Climatización / aire acondicionado'
+  };
+  if (serviceSelect && serviceParam && serviceMap[serviceParam]) {
+    serviceSelect.value = serviceMap[serviceParam];
+    if (window.location.hash === '#contacto') {
+      history.replaceState({}, '', window.location.pathname + '#contacto');
+    }
+  }
   const originalButtonHtml = submitButton ? submitButton.innerHTML : '';
 
   const setOverlayState = (state, title, text) => {
