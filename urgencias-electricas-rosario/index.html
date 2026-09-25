@@ -38,10 +38,18 @@
       <a class="btn ghost" href="../?servicio=urgencia#contacto">Enviar consulta</a>
     </div>
   </div>
-  <div class="emergency-page-visual" aria-hidden="true">
-    <div class="emergency-page-radar"></div>
-    <svg viewBox="0 0 120 160"><path d="M72 5 29 82h31l-13 73 45-88H61L72 5Z"/></svg>
-    <strong>24H</strong><small>ATENCIÓN ELÉCTRICA</small>
+  <div class="emergency-page-visual emergency-circuit" aria-hidden="true">
+    <div class="circuit-grid"></div>
+    <div class="circuit-line">
+      <span class="segment s1"></span><span class="segment s2"></span><span class="segment s3"></span><span class="segment s4"></span>
+      <span class="fault-node"></span><span class="repair-node"></span>
+    </div>
+    <div class="circuit-pulse pulse-a"></div><div class="circuit-pulse pulse-b"></div>
+    <div class="circuit-status">
+      <span class="status status-fault">FALLA DETECTADA</span>
+      <span class="status status-diagnosis">DIAGNÓSTICO</span>
+      <span class="status status-restored">RESTABLECIDO</span>
+    </div>
   </div>
 </section>
 
