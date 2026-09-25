@@ -38,17 +38,20 @@
       <a class="btn ghost" href="../?servicio=urgencia#contacto">Enviar consulta</a>
     </div>
   </div>
-  <div class="emergency-page-visual emergency-circuit" aria-hidden="true">
-    <div class="circuit-grid"></div>
-    <div class="circuit-line">
-      <span class="segment s1"></span><span class="segment s2"></span><span class="segment s3"></span><span class="segment s4"></span>
-      <span class="fault-node"></span><span class="repair-node"></span>
-    </div>
-    <div class="circuit-pulse pulse-a"></div><div class="circuit-pulse pulse-b"></div>
-    <div class="circuit-status">
-      <span class="status status-fault">FALLA DETECTADA</span>
-      <span class="status status-diagnosis">DIAGNÓSTICO</span>
-      <span class="status status-restored">RESTABLECIDO</span>
+  <div class="emergency-page-visual emergency-monitor" aria-hidden="true">
+    <div class="monitor-grid"></div>
+    <div class="monitor-top"><span class="monitor-led"></span><small>URGENCIA ACTIVA</small></div>
+    <div class="monitor-clock"><strong>24</strong><span>HS</span></div>
+    <svg class="monitor-wave" viewBox="0 0 720 150" preserveAspectRatio="none">
+      <path class="wave-base" d="M0 78 H120 L148 78 L164 42 L184 118 L204 22 L226 78 H335 L360 78 L377 56 L392 98 L408 78 H720"/>
+      <path class="wave-live" d="M0 78 H120 L148 78 L164 42 L184 118 L204 22 L226 78 H335 L360 78 L377 56 L392 98 L408 78 H720"/>
+    </svg>
+    <div class="monitor-alert-flash"></div>
+    <div class="monitor-state">
+      <span class="monitor-normal">SISTEMA ESTABLE</span>
+      <span class="monitor-alert">ALERTA DETECTADA</span>
+      <span class="monitor-action">INTERVENCIÓN</span>
+      <span class="monitor-restored">SERVICIO RESTABLECIDO</span>
     </div>
   </div>
 </section>

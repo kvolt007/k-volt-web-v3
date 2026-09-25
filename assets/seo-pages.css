@@ -262,3 +262,34 @@ footer{border-top:1px solid #ffffff12;padding:38px 5vw;display:flex;justify-cont
 .emergency-page-visual .pulse-a{animation:scanPulse 4.8s ease-out infinite 1.2s}.emergency-page-visual .pulse-b{animation:scanPulse 4.8s ease-out infinite 1.8s}
 .emergency-page-visual .circuit-status{position:relative;z-index:3;display:grid;place-items:center;min-height:54px}.emergency-page-visual .status{grid-area:1/1;color:#777;font-size:.72rem;font-weight:900;letter-spacing:.18em;opacity:0;transform:translateY(6px)}
 .emergency-page-visual .status-fault{animation:statusFault 4.8s ease infinite}.emergency-page-visual .status-diagnosis{animation:statusDiagnosis 4.8s ease infinite}.emergency-page-visual .status-restored{animation:statusRestored 4.8s ease infinite;color:var(--y)}
+
+/* Monitor urgency visual shared */
+
+
+.emergency-monitor{position:relative;overflow:hidden;isolation:isolate}
+.monitor-grid{position:absolute;inset:0;background-image:linear-gradient(#ffffff06 1px,transparent 1px),linear-gradient(90deg,#ffffff06 1px,transparent 1px);background-size:32px 32px;mask-image:linear-gradient(to bottom,#000 25%,transparent 92%)}
+.monitor-top{position:absolute;z-index:4;top:24px;left:26px;display:flex;align-items:center;gap:9px;color:#777;font-size:.62rem;font-weight:900;letter-spacing:.17em}
+.monitor-led{width:8px;height:8px;border-radius:50%;background:#ffcc00;box-shadow:0 0 14px rgba(255,204,0,.65);animation:monitorLed 6.4s ease-in-out infinite}
+.monitor-clock{position:relative;z-index:3;display:flex;align-items:flex-end;justify-content:center;gap:8px;margin-top:-14px;filter:drop-shadow(0 0 22px rgba(255,204,0,.18))}
+.monitor-clock strong{font-size:clamp(6.8rem,11vw,10.5rem);line-height:.74;letter-spacing:-.085em;color:#ffcc00}
+.monitor-clock span{font-size:clamp(1.5rem,2.6vw,2.5rem);font-weight:950;letter-spacing:-.04em;color:#f2f2ee;margin-bottom:8px}
+.monitor-wave{position:relative;z-index:3;width:82%;height:118px;margin-top:22px;overflow:visible}
+.monitor-wave path{fill:none;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.wave-base{stroke:#ffffff12;stroke-width:4}
+.wave-live{stroke:#ffcc00;stroke-width:4;stroke-dasharray:1100;stroke-dashoffset:1100;filter:drop-shadow(0 0 7px rgba(255,204,0,.45));animation:monitorTrace 6.4s linear infinite}
+.monitor-alert-flash{position:absolute;z-index:1;inset:0;background:radial-gradient(circle at center,rgba(255,110,55,.24),transparent 56%);opacity:0;animation:monitorFlash 6.4s ease infinite;pointer-events:none}
+.monitor-state{position:relative;z-index:4;display:grid;place-items:center;min-height:48px;margin-top:4px}
+.monitor-state span{grid-area:1/1;font-size:.7rem;font-weight:950;letter-spacing:.18em;opacity:0;transform:translateY(5px)}
+.monitor-normal{color:#9d9d9d;animation:monitorNormal 6.4s ease infinite}
+.monitor-alert{color:#ff7a37;animation:monitorAlert 6.4s ease infinite}
+.monitor-action{color:#fff;animation:monitorAction 6.4s ease infinite}
+.monitor-restored{color:#ffcc00;animation:monitorRestored 6.4s ease infinite}
+@keyframes monitorTrace{0%{stroke-dashoffset:1100;opacity:.55}18%{stroke-dashoffset:820;opacity:1}34%{stroke-dashoffset:570;stroke:#ff7a37}51%{stroke-dashoffset:390;stroke:#fff}70%{stroke-dashoffset:160;stroke:#ffcc00}88%,100%{stroke-dashoffset:0;stroke:#ffcc00}}
+@keyframes monitorLed{0%,26%,72%,100%{background:#ffcc00;box-shadow:0 0 14px rgba(255,204,0,.65)}31%,44%{background:#ff7a37;box-shadow:0 0 20px rgba(255,122,55,.9)}50%,65%{background:#fff;box-shadow:0 0 16px rgba(255,255,255,.7)}}
+@keyframes monitorFlash{0%,27%,45%,100%{opacity:0}31%,35%,39%{opacity:.85}33%,37%,43%{opacity:.18}}
+@keyframes monitorNormal{0%,20%{opacity:1;transform:none}26%,100%{opacity:0}}
+@keyframes monitorAlert{0%,27%{opacity:0}31%,43%{opacity:1;transform:none}49%,100%{opacity:0}}
+@keyframes monitorAction{0%,46%{opacity:0}52%,66%{opacity:1;transform:none}71%,100%{opacity:0}}
+@keyframes monitorRestored{0%,69%{opacity:0}76%,96%{opacity:1;transform:none}100%{opacity:0}}
+@media(max-width:600px){.monitor-top{top:18px;left:18px}.monitor-wave{width:90%;height:94px}.monitor-clock strong{font-size:7rem}.monitor-clock span{font-size:1.6rem}}
+@media(prefers-reduced-motion:reduce){.monitor-led,.wave-live,.monitor-alert-flash,.monitor-state span{animation:none!important}.wave-live{stroke-dashoffset:0!important}.monitor-restored{opacity:1!important;transform:none!important}}
