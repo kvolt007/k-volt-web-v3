@@ -16,65 +16,51 @@ footer{border-top:1px solid #ffffff12;padding:38px 5vw;display:flex;justify-cont
 .zone-list{display:flex;gap:9px;flex-wrap:wrap;margin-top:28px}.zone-list span{padding:9px 12px;border:1px solid #0002;border-radius:999px;background:#0000000c;font-size:.82rem}
 @media(max-width:850px){nav{display:none}.grid{grid-template-columns:1fr}.hero{padding-left:18px;padding-right:18px}.content,.local,.cta{padding-left:18px;padding-right:18px}footer{flex-direction:column}}
 
-/* Obras Nuevas: animación a la izquierda + contenido a la derecha */
-.obra-intro-split{
-  padding:90px 5vw;
-  background:#0b0b0b;
-  display:grid;
-  grid-template-columns:1.05fr .95fr;
-  gap:34px;
-  align-items:stretch;
+/* Obras Nuevas: hero responsive con animación a la derecha */
+.hero-obras{
+  grid-template-columns:minmax(0,1.05fr) minmax(420px,.95fr);
+  gap:48px;
+  align-items:center;
+  min-height:calc(100vh - 110px);
 }
-.obra-visual{
+.hero-obras-copy{min-width:0}
+.hero-obras-copy h1{max-width:900px}
+.hero-obras-visual{
   min-width:0;
+  width:100%;
+  aspect-ratio:900/760;
+  max-height:660px;
   border:1px solid #ffffff10;
-  border-radius:24px;
+  border-radius:26px;
   overflow:hidden;
   background:#070707;
-  box-shadow:0 28px 80px rgba(0,0,0,.28);
+  box-shadow:0 30px 90px rgba(0,0,0,.34);
 }
-.obra-scene-frame{
-  width:100%;
-  height:760px;
-  border:0;
+.hero-obras-frame{
   display:block;
+  width:100%;
+  height:100%;
+  border:0;
+  overflow:hidden;
   background:#070707;
 }
-.obra-copy-panel{
-  min-width:0;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  padding:14px 0 14px 16px;
-}
-.obra-copy-panel h2{
-  font-size:clamp(2.3rem,4.4vw,4.8rem);
-  line-height:.95;
-  letter-spacing:-.05em;
-  margin:0 0 18px;
-}
-.obra-copy-panel>p{
-  color:#aaa;
-  line-height:1.75;
-  max-width:760px;
-  margin:0;
-}
-.obra-cards{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:14px;
-  margin-top:30px;
-}
-.obra-cards .card{
-  padding:22px;
+@media(max-width:1180px){
+  .hero-obras{grid-template-columns:1fr 1fr;gap:30px}
 }
 @media(max-width:980px){
-  .obra-intro-split{grid-template-columns:1fr;padding-left:18px;padding-right:18px}
-  .obra-scene-frame{height:640px}
-  .obra-copy-panel{padding:8px 0 0}
+  .hero-obras{
+    grid-template-columns:1fr;
+    gap:34px;
+    padding-top:70px;
+    padding-bottom:70px;
+  }
+  .hero-obras-visual{
+    width:min(760px,100%);
+    margin:0 auto;
+    max-height:none;
+  }
 }
 @media(max-width:620px){
-  .obra-intro-split{padding-top:70px;padding-bottom:70px}
-  .obra-visual{border-radius:18px}
-  .obra-scene-frame{height:520px}
+  .hero-obras{padding-left:18px;padding-right:18px}
+  .hero-obras-visual{border-radius:18px}
 }
