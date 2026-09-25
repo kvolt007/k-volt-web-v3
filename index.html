@@ -859,6 +859,37 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--y);outline-offset:4
   .contact-send-overlay,.contact-send-card,.contact-send-bolt path,.contact-send-glow,.contact-send-check{animation:none!important;transition:none!important}
 }
 
+
+/* Home #cobertura: mapa visual aprobado */
+.coverage-map.coverage-map-image{
+  position:relative;
+  min-height:560px;
+  border-radius:28px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.10);
+  background:#050505;
+  box-shadow:0 30px 90px rgba(0,0,0,.30);
+}
+.coverage-map.coverage-map-image img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  object-position:center;
+}
+@media(max-width:900px){
+  .coverage-map.coverage-map-image{
+    min-height:0;
+    aspect-ratio:4/3;
+    border-radius:20px;
+  }
+}
+@media(max-width:600px){
+  .coverage-map.coverage-map-image{aspect-ratio:1/1}
+}
+
 </style>
 </head>
 <body>
@@ -996,31 +1027,11 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--y);outline-offset:4
     </div>
   </div>
 
-  <div class="coverage-map reveal" aria-label="Cobertura K-Volt en Rosario y Gran Rosario">
-    <div class="map-grid"></div>
-    <div class="map-core"><i></i><strong>ROSARIO</strong><small>K-VOLT</small></div>
-
-    <span class="map-node ibarlucea">Ibarlucea</span>
-    <span class="map-node pto">Puerto Gral. San Martín</span>
-    <span class="map-node slorenzo">San Lorenzo</span>
-    <span class="map-node fray">Fray L. Beltrán</span>
-    <span class="map-node capitan">Capitán Bermúdez</span>
-    <span class="map-node baigorria">Granadero Baigorria</span>
-
-    <span class="map-node funes">Funes</span>
-    <span class="map-node roldan">Roldán</span>
-    <span class="map-node perez">Pérez</span>
-    <span class="map-node soldini">Soldini</span>
-
-    <span class="map-node vgg">Villa G. Gálvez</span>
-    <span class="map-node alvear">Alvear</span>
-    <span class="map-node pueblo">Pueblo Esther</span>
-    <span class="map-node glagos">General Lagos</span>
-    <span class="map-node asec">Arroyo Seco</span>
-
-    <div class="map-link link-north"></div>
-    <div class="map-link link-west"></div>
-    <div class="map-link link-south"></div>
+  <div class="coverage-map coverage-map-image reveal" aria-label="Cobertura K-Volt en Rosario y Gran Rosario">
+    <img src="assets/cobertura-kvolt.jpg"
+         alt="Mapa visual de cobertura K-Volt en Rosario y Gran Rosario con localidades de atención"
+         loading="lazy"
+         decoding="async">
   </div>
 </section>
 
