@@ -28,8 +28,56 @@
 <main>
 <section class="hero"><div><div class="kicker">OBRAS NUEVAS</div><h1>La instalación eléctrica pensada desde el inicio de la obra.</h1><p>Acompañamos obras nuevas y ampliaciones con una distribución eléctrica ordenada, contemplando circuitos, consumos y futuras necesidades de la vivienda o espacio.</p><div class="actions"><a class="btn primary" href="../#contacto">Pedir presupuesto</a><a class="btn ghost" href="https://wa.me/543413217314" target="_blank" rel="noopener">WhatsApp</a></div></div></section>
 <section class="content"><h2>De la distribución a cada ambiente.</h2><p>Una obra nueva permite planificar la instalación antes de ejecutar. Eso ayuda a ordenar circuitos, recorridos, tableros y puntos de consumo evitando correcciones innecesarias más adelante.</p><div class="grid"><article class="card"><span>01</span><h3>Planificación de circuitos</h3><p>Organización de circuitos y distribución de cargas de acuerdo con los ambientes y usos previstos.</p></article><article class="card"><span>02</span><h3>Canalización y cableado</h3><p>Ejecución de recorridos, conductores y puntos eléctricos según el avance de la obra.</p></article><article class="card"><span>03</span><h3>Tablero y puesta en servicio</h3><p>Armado e integración del tablero y verificación del funcionamiento de la instalación.</p></article></div></section>
+
+<section class="obra-animation-section" aria-labelledby="obraAnimTitle">
+  <div class="obra-animation-wrap">
+    <div class="obra-animation-head">
+      <div class="kicker">RECORRIDO DE LA ENERGÍA</div>
+      <h2 id="obraAnimTitle">De la acometida al hogar.</h2>
+      <p>La animación muestra el recorrido conceptual desde la acometida, pasando por medición y tablero, hasta la distribución hacia los distintos ambientes.</p>
+    </div>
+    <iframe
+      class="obra-animation-frame"
+      id="obraAnimationSeo"
+      src="../obras-nuevas.html"
+      title="Animación K-Volt del recorrido eléctrico desde la acometida hasta el hogar"
+      loading="lazy">
+    </iframe>
+  </div>
+</section>
+
 <section class="local"><h2>Obras eléctricas en Rosario y alrededores.</h2><p>Evaluamos obras nuevas y ampliaciones en Rosario y distintas localidades de Gran Rosario según alcance y disponibilidad.</p><div class="zone-list"><span>Rosario</span><span>Gran Rosario</span><span>Funes</span><span>Roldán</span><span>San Lorenzo</span><span>Granadero Baigorria</span><span>Villa G. Gálvez</span><span>Arroyo Seco</span></div></section>
 <section class="cta"><h2>Contanos qué necesitás resolver.</h2><p>Describinos el trabajo o la falla. Si podés, sumá información sobre la instalación para que podamos orientarte mejor.</p><a class="btn primary" href="../#contacto">Enviar consulta</a></section>
 </main>
 <footer><strong>K-VOLT</strong><span>Electricidad · Obras · Empresas · Climatización residencial</span><small>Rosario y Gran Rosario</small></footer>
+<script>
+const obraAnimationSeo = document.getElementById('obraAnimationSeo');
+if (obraAnimationSeo) {
+  let obraStarted = false;
+  const startObra = () => {
+    if (obraStarted) return;
+    obraStarted = true;
+    obraAnimationSeo.contentWindow?.postMessage('kvolt-start-obras', '*');
+  };
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.16) {
+          setTimeout(startObra, 180);
+          observer.disconnect();
+        }
+      });
+    }, { threshold: [0.16] });
+    observer.observe(obraAnimationSeo);
+  } else {
+    startObra();
+  }
+
+  obraAnimationSeo.addEventListener('load', () => {
+    const rect = obraAnimationSeo.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) setTimeout(startObra, 180);
+  });
+}
+</script>
 </body></html>
