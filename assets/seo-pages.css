@@ -16,22 +16,30 @@ footer{border-top:1px solid #ffffff12;padding:38px 5vw;display:flex;justify-cont
 .zone-list{display:flex;gap:9px;flex-wrap:wrap;margin-top:28px}.zone-list span{padding:9px 12px;border:1px solid #0002;border-radius:999px;background:#0000000c;font-size:.82rem}
 @media(max-width:850px){nav{display:none}.grid{grid-template-columns:1fr}.hero{padding-left:18px;padding-right:18px}.content,.local,.cta{padding-left:18px;padding-right:18px}footer{flex-direction:column}}
 
-/* Obras Nuevas: hero 50/50, animación izquierda + texto derecha */
+/* Obras Nuevas: texto izquierda + animación derecha */
 .hero.hero-obras{
   display:grid !important;
   grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
+  grid-template-areas:"copy visual" !important;
   gap:42px !important;
   align-items:stretch !important;
   align-content:stretch !important;
   min-height:auto !important;
   padding:58px 5vw 76px !important;
 }
-.hero-obras-visual,
 .hero-obras-copy{
+  grid-area:copy !important;
   min-width:0;
   min-height:640px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:40px 22px;
 }
 .hero-obras-visual{
+  grid-area:visual !important;
+  min-width:0;
+  min-height:640px;
   width:100%;
   height:100%;
   border:1px solid #ffffff10;
@@ -49,41 +57,33 @@ footer{border-top:1px solid #ffffff12;padding:38px 5vw;display:flex;justify-cont
   overflow:hidden;
   background:#070707;
 }
-.hero-obras-copy{
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  padding:40px 22px;
-}
 .hero-obras-copy h1{
   max-width:none;
   font-size:clamp(3.1rem,5.2vw,6rem);
 }
-.hero-obras-copy p{
-  max-width:720px;
-}
-@media(max-width:980px){
+.hero-obras-copy p{max-width:720px}
+
+/* Mantener dos columnas incluso en notebook/tablet horizontal.
+   Apilar únicamente en pantallas realmente angostas. */
+@media(max-width:720px){
   .hero.hero-obras{
     grid-template-columns:1fr !important;
+    grid-template-areas:"copy" "visual" !important;
     gap:28px !important;
     padding:42px 18px 64px !important;
   }
-  .hero-obras-visual,
   .hero-obras-copy{
     min-height:auto;
+    padding:12px 0 0;
   }
   .hero-obras-visual{
+    min-height:0;
     aspect-ratio:900/760;
+    border-radius:18px;
   }
   .hero-obras-frame{
     min-height:0;
     height:100%;
   }
-  .hero-obras-copy{
-    padding:12px 0 0;
-  }
-}
-@media(max-width:620px){
-  .hero-obras-visual{border-radius:18px}
   .hero-obras-copy h1{font-size:clamp(2.8rem,14vw,4.5rem)}
 }
