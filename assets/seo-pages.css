@@ -131,7 +131,7 @@ footer{border-top:1px solid #ffffff12;padding:38px 5vw;display:flex;justify-cont
   opacity:.85;
 }
 .hero-hogar .service-page-visual{--service-bg:url("../assets/hogar.jpg")}
-.hero-empresa .service-page-visual{--service-bg:url("../assets/empresa.jpg")}
+.hero-empresa .service-page-visual{--service-bg:url("../assets/comercios-empresas-kvolt.jpg")}
 .hero-clima .service-page-visual{--service-bg:url("../assets/climatizacion.jpg")}
 .service-page-visual img{
   position:relative;
