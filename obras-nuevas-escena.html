@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>K-Volt · Obras Nuevas · Acometida a 220V</title>
+<style>
+:root{
+  --bg:#070707;
+  --text:#f4f4f1;
+  --yellow:#ffcc00;
+  --yellow2:#fff0a8;
+  --line:#3e3e3e;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;padding:0}
+.wrap{width:100%;height:100%;margin:0 auto}
+.kicker{color:#666;font-size:.7rem;letter-spacing:.18em;font-weight:900;margin-bottom:18px}
+.card{
+  min-height:760px;overflow:hidden;display:block;border-radius:0;border:0;
+  background:radial-gradient(circle at 68% 30%,rgba(255,204,0,.08),transparent 28rem),linear-gradient(145deg,#161616,#0a0a0a);
+}
+.copy{padding:clamp(28px,5vw,68px);display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2}
+.copy .eyebrow{margin:0 0 10px;color:var(--yellow);font-weight:900;letter-spacing:.18em;font-size:.72rem}
+h1{margin:0;font-size:clamp(3rem,5.8vw,6.8rem);line-height:.87;letter-spacing:-.065em}
+h1 span{display:block;color:var(--yellow)}
+.copy p{max-width:520px;color:#b0b0b0;line-height:1.7;margin-top:22px;font-size:1rem}
+.badge{
+  margin-top:24px;display:inline-flex;align-self:flex-start;gap:8px;align-items:center;
+  padding:11px 15px;border:1px solid #ffcc0040;border-radius:999px;color:var(--yellow);
+  font-size:.72rem;letter-spacing:.08em;font-weight:900;
+}
+.badge i{width:8px;height:8px;border-radius:50%;background:var(--yellow);box-shadow:0 0 18px var(--yellow)}
+.legend{display:grid;gap:10px;margin-top:34px}
+.legend div{display:flex;gap:12px;align-items:flex-start;color:#8f8f8f;font-size:.88rem}
+.legend span{
+  width:30px;height:30px;flex:0 0 30px;display:grid;place-items:center;border-radius:50%;
+  background:#161616;border:1px solid #ffffff14;color:var(--yellow);font-weight:900
+}
+.scene{
+  position:relative;min-height:760px;
+  background:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
+  background-size:42px 42px;
+}
+.scene:after{
+  content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,7,7,.5),transparent 15%,transparent 85%,rgba(7,7,7,.45));pointer-events:none;
+}
+.status{
+  position:absolute;top:22px;right:22px;z-index:4;padding:10px 12px;border-radius:999px;
+  background:rgba(0,0,0,.36);border:1px solid #ffffff14;color:#7a7a7a;font-size:.62rem;letter-spacing:.18em;
+}
+svg{width:100%;height:100%;display:block}
+.pipe{fill:none;stroke:var(--line);stroke-width:9;stroke-linecap:round;stroke-linejoin:round}
+.wall{fill:none;stroke:#ffffff28;stroke-width:3}
+.roof{fill:none;stroke:#ffffff32;stroke-width:4}
+.label{fill:#666;font-size:12px;letter-spacing:2px;font-weight:700}
+.energyLine{
+  fill:none;stroke:url(#energyGradient);stroke-width:8;stroke-linecap:round;stroke-linejoin:round;
+  filter:url(#glow);opacity:.08;
+}
+.roomFill{fill:rgba(255,255,255,.03)}
+.window{fill:#101010;stroke:#ffffff18;stroke-width:2;transition:fill .4s ease, filter .4s ease}
+.window.on{fill:rgba(255,204,0,.92);filter:drop-shadow(0 0 10px rgba(255,204,0,.75))}
+.lamp{fill:#111;stroke:#ffffff20;stroke-width:2;transition:fill .35s ease, filter .35s ease, stroke .35s ease}
+.lamp.on{fill:var(--yellow2);stroke:var(--yellow);filter:drop-shadow(0 0 12px rgba(255,204,0,.85))}
+.homeGlow{fill:rgba(255,204,0,.0);transition:fill .55s ease}
+.homeGlow.on{fill:rgba(255,204,0,.08)}
+.meterScreen{fill:#0a0a0a;stroke:#ffcc0025;stroke-width:2}
+.meterScreen.on{fill:#151100;filter:drop-shadow(0 0 10px rgba(255,204,0,.35))}
+.breaker{fill:#222;stroke:#ffffff14;stroke-width:1.5;transition:fill .28s ease, filter .28s ease}
+.breaker.on{fill:var(--yellow);filter:drop-shadow(0 0 10px rgba(255,204,0,.4))}
+.replay{
+  position:absolute;left:24px;bottom:24px;z-index:5;padding:12px 16px;border-radius:999px;
+  border:1px solid #ffffff16;background:#0e0e0e;color:#ddd;cursor:pointer;font-size:.78rem;font-weight:700;
+}
+.replay:hover{border-color:#ffcc0040;color:var(--yellow)}
+.steps{position:absolute;left:24px;top:24px;z-index:5;display:grid;gap:8px}
+.steps span{
+  color:#7d7d7d;font-size:.62rem;letter-spacing:.14em;background:rgba(0,0,0,.3);
+  border:1px solid #ffffff10;border-radius:999px;padding:9px 12px;
+}
+.steps span.active{color:#101010;background:var(--yellow);border-color:var(--yellow);font-weight:900}
+@media(max-width:980px){.scene{min-height:640px}}
+@media(max-width:620px){
+  .scene{min-height:520px}.steps{display:none}.status{font-size:.56rem}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  
+  <section class="card">
+    <div class="scene">
+      <div class="steps">
+        <span id="s1">ACOMETIDA</span>
+        <span id="s2">MEDIDOR</span>
+        <span id="s3">TABLERO</span>
+        <span id="s4">CAÑERÍAS</span>
+        <span id="s5">HOGAR EN 220V</span>
+      </div>
+      
+      <button class="replay" id="replay">↻ Repetir animación</button>
+
+      <svg id="svgScene" viewBox="0 0 900 760" aria-label="Animación de acometida y distribución eléctrica en obra nueva">
+        <defs>
+          <linearGradient id="energyGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="transparent"/>
+            <stop offset="20%" stop-color="#ffcc00"/>
+            <stop offset="50%" stop-color="#fff1a3"/>
+            <stop offset="80%" stop-color="#ffcc00"/>
+            <stop offset="100%" stop-color="transparent"/>
+          </linearGradient>
+          <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+            <feGaussianBlur stdDeviation="4" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <rect class="roomFill" x="280" y="170" width="430" height="360" rx="12"></rect>
+        <rect id="homeGlow" class="homeGlow" x="280" y="170" width="430" height="360" rx="12"></rect>
+
+        <path class="roof" d="M260 240 L495 90 L730 240"></path>
+        <path class="wall" d="M300 220 H690 V520 H300 Z"></path>
+        <path class="wall" d="M495 220 V520"></path>
+        <path class="wall" d="M300 360 H690"></path>
+        <path class="wall" d="M405 520 V420 H490 V520"></path>
+
+        <!-- meter / panel -->
+        <rect x="145" y="190" width="90" height="130" rx="12" fill="#181818" stroke="#ffffff20" stroke-width="2"></rect>
+        <rect id="meterScreen" x="163" y="210" width="54" height="38" rx="6" class="meterScreen"></rect>
+        <text x="190" y="236" text-anchor="middle" class="label">MED</text>
+
+        <rect x="145" y="360" width="110" height="160" rx="14" fill="#151515" stroke="#ffffff20" stroke-width="2"></rect>
+        <text x="200" y="388" text-anchor="middle" class="label">TABLERO</text>
+
+        <rect id="b1" x="165" y="408" width="28" height="26" rx="4" class="breaker"></rect>
+        <rect id="b2" x="208" y="408" width="28" height="26" rx="4" class="breaker"></rect>
+        <rect id="b3" x="165" y="450" width="28" height="26" rx="4" class="breaker"></rect>
+        <rect id="b4" x="208" y="450" width="28" height="26" rx="4" class="breaker"></rect>
+
+        <!-- conduits -->
+        <path id="p0" class="pipe" d="M450 0 V78"></path>
+        <path id="p1" class="pipe" d="M450 78 H190 V190"></path>
+        <path id="p2" class="pipe" d="M190 320 V360"></path>
+        <path id="p3" class="pipe" d="M255 430 H300"></path>
+
+        <!-- central trunk -->
+        <path id="p4" class="pipe" d="M300 430 H405"></path>
+
+        <!-- upper floor, mirrored logic -->
+        <path id="p5" class="pipe" d="M405 430 V300"></path>
+        <path id="p6" class="pipe" d="M405 300 H445"></path>
+        <path id="p7" class="pipe" d="M445 300 H620"></path>
+
+        <!-- lower floor, same logic as upper -->
+        <path id="p8" class="pipe" d="M405 430 H445"></path>
+        <path id="p9" class="pipe" d="M445 430 H620"></path>
+
+        <!-- energy paths -->
+        <path id="e0" class="energyLine" d="M450 0 V78"></path>
+        <path id="e1" class="energyLine" d="M450 78 H190 V190"></path>
+        <path id="e2" class="energyLine" d="M190 320 V360"></path>
+        <path id="e3" class="energyLine" d="M255 430 H300"></path>
+        <path id="e4" class="energyLine" d="M300 430 H405"></path>
+        <path id="e5" class="energyLine" d="M405 430 V300"></path>
+        <path id="e6" class="energyLine" d="M405 300 H445"></path>
+        <path id="e7" class="energyLine" d="M445 300 H620"></path>
+        <path id="e8" class="energyLine" d="M405 430 H445"></path>
+        <path id="e9" class="energyLine" d="M445 430 H620"></path>
+
+        <circle id="dropPoint" cx="450" cy="0" r="0" fill="#ffcc00"></circle>
+        <path id="acometidaFlash" d="M445 0 L458 0 L438 45 L455 45 L432 86" fill="none" stroke="#ffcc00" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" opacity="0"></path>
+
+        <!-- windows -->
+        <rect id="w1" class="window" x="335" y="250" width="56" height="46" rx="8"></rect>
+        <rect id="w2" class="window" x="545" y="250" width="56" height="46" rx="8"></rect>
+        <rect id="w3" class="window" x="335" y="395" width="56" height="46" rx="8"></rect>
+        <rect id="w4" class="window" x="545" y="395" width="56" height="46" rx="8"></rect>
+
+        <!-- light points -->
+        <circle id="l1" class="lamp" cx="445" cy="300" r="11"></circle>
+        <circle id="l2" class="lamp" cx="620" cy="300" r="11"></circle>
+        <circle id="l3" class="lamp" cx="445" cy="430" r="11"></circle>
+        <circle id="l4" class="lamp" cx="620" cy="430" r="11"></circle>
+
+        <text x="454" y="640" text-anchor="middle" style="font-size:15px;fill:#666;letter-spacing:2px;">PLANO → ACOMETIDA → MEDIDOR → TABLERO → CAÑERÍAS → HOGAR</text>
+        <text id="voltageText" x="690" y="120" text-anchor="end" style="font-size:78px;font-weight:900;fill:#ffcc00;letter-spacing:-4px;opacity:0;">220<tspan style="font-size:20px;fill:#7a7a7a;letter-spacing:0;">V</tspan></text>
+      </svg>
+    </div>
+  </section>
+</div>
+
+<script>
+const steps = ['s1','s2','s3','s4','s5'].map(id => document.getElementById(id));
+const replayBtn = document.getElementById('replay');
+const svg = document.getElementById('svgScene');
+const lampIds = ['l1','l2','l3','l4'];
+const winIds = ['w1','w2','w3','w4'];
+const breakerIds = ['b1','b2','b3','b4'];
+
+let timers = [];
+let pulseNodes = [];
+
+function clearTimers(){ timers.forEach(t => clearTimeout(t)); timers = []; }
+function clearPulses(){ pulseNodes.forEach(n => n.remove()); pulseNodes = []; }
+function activateStep(n){
+  steps.forEach(s => s.classList.remove('active'));
+  if (steps[n-1]) steps[n-1].classList.add('active');
+}
+function resetPath(id, dim=.03){
+  const p = document.getElementById(id);
+  const len = p.getTotalLength();
+  p.style.transition = 'none';
+  p.style.strokeDasharray = len;
+  p.style.strokeDashoffset = len;
+  p.style.opacity = dim;
+}
+function resetScene(){
+  clearTimers();
+  clearPulses();
+  steps.forEach(s => s.classList.remove('active'));
+  document.getElementById('meterScreen').classList.remove('on');
+  document.getElementById('homeGlow').classList.remove('on');
+  document.getElementById('voltageText').style.opacity = '0';
+  document.getElementById('dropPoint').setAttribute('r','0');
+  document.getElementById('acometidaFlash').setAttribute('opacity','0');
+
+  lampIds.forEach(id => document.getElementById(id).classList.remove('on'));
+  winIds.forEach(id => document.getElementById(id).classList.remove('on'));
+  breakerIds.forEach(id => document.getElementById(id).classList.remove('on'));
+
+  ['p0','p1','p2','p3','p4','p5','p6','p7','p8','p9'].forEach(id => resetPath(id, 1));
+  ['e0','e1','e2','e3','e4','e5','e6','e7','e8','e9'].forEach(id => resetPath(id, .03));
+}
+function revealPipe(id, duration=500){
+  const p = document.getElementById(id);
+  p.getBoundingClientRect();
+  p.style.transition = `stroke-dashoffset ${duration}ms ease`;
+  p.style.strokeDashoffset = '0';
+}
+function animateEnergyOnPath(id, duration=1000){
+  const path = document.getElementById(id);
+  const len = path.getTotalLength();
+  path.style.opacity = '.95';
+  path.getBoundingClientRect();
+  path.style.transition = `stroke-dashoffset ${duration}ms linear`;
+  path.style.strokeDashoffset = '0';
+
+  const pulse = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  pulse.setAttribute('r', 8);
+  pulse.setAttribute('fill', '#ffcc00');
+  pulse.setAttribute('filter', 'url(#glow)');
+  svg.appendChild(pulse);
+  pulseNodes.push(pulse);
+
+  const start = performance.now();
+  function frame(now){
+    const t = Math.min((now - start) / duration, 1);
+    const point = path.getPointAtLength(len * t);
+    pulse.setAttribute('cx', point.x);
+    pulse.setAttribute('cy', point.y);
+    if (t < 1) requestAnimationFrame(frame);
+    else pulse.remove();
+  }
+  requestAnimationFrame(frame);
+}
+function turnOn(ids, step=120){
+  ids.forEach((id, i) => {
+    timers.push(setTimeout(() => document.getElementById(id).classList.add('on'), i * step));
+  });
+}
+function startSequence(){
+  resetScene();
+
+  activateStep(1);
+  document.getElementById('dropPoint').setAttribute('r','7');
+  document.getElementById('acometidaFlash').setAttribute('opacity','.95');
+  timers.push(setTimeout(() => document.getElementById('acometidaFlash').setAttribute('opacity','0.18'), 450));
+
+  revealPipe('p0', 360);
+  timers.push(setTimeout(() => animateEnergyOnPath('e0', 580), 250));
+
+  timers.push(setTimeout(() => {
+    revealPipe('p1', 900);
+    animateEnergyOnPath('e1', 1250);
+  }, 560));
+
+  timers.push(setTimeout(() => {
+    activateStep(2);
+    document.getElementById('meterScreen').classList.add('on');
+  }, 1720));
+
+  timers.push(setTimeout(() => {
+    revealPipe('p2', 420);
+    animateEnergyOnPath('e2', 620);
+  }, 1880));
+
+  timers.push(setTimeout(() => {
+    activateStep(3);
+    turnOn(breakerIds, 110);
+  }, 2580));
+
+  timers.push(setTimeout(() => {
+    activateStep(4);
+    revealPipe('p3', 240);
+    animateEnergyOnPath('e3', 320);
+  }, 3050));
+
+  timers.push(setTimeout(() => {
+    revealPipe('p4', 260);
+    animateEnergyOnPath('e4', 380);
+  }, 3400));
+
+  // upper floor
+  timers.push(setTimeout(() => {
+    revealPipe('p5', 520);
+    animateEnergyOnPath('e5', 760);
+  }, 3720));
+
+  timers.push(setTimeout(() => {
+    revealPipe('p6', 260);
+    animateEnergyOnPath('e6', 360);
+  }, 4460));
+
+  timers.push(setTimeout(() => {
+    document.getElementById('l1').classList.add('on');
+    document.getElementById('w1').classList.add('on');
+  }, 4820));
+
+  timers.push(setTimeout(() => {
+    revealPipe('p7', 540);
+    animateEnergyOnPath('e7', 760);
+  }, 4960));
+
+  timers.push(setTimeout(() => {
+    document.getElementById('l2').classList.add('on');
+    document.getElementById('w2').classList.add('on');
+  }, 5700));
+
+  // lower floor, mirrored logic
+  timers.push(setTimeout(() => {
+    revealPipe('p8', 260);
+    animateEnergyOnPath('e8', 360);
+  }, 5420));
+
+  timers.push(setTimeout(() => {
+    document.getElementById('l3').classList.add('on');
+    document.getElementById('w3').classList.add('on');
+  }, 5780));
+
+  timers.push(setTimeout(() => {
+    revealPipe('p9', 540);
+    animateEnergyOnPath('e9', 760);
+  }, 5960));
+
+  timers.push(setTimeout(() => {
+    document.getElementById('l4').classList.add('on');
+    document.getElementById('w4').classList.add('on');
+  }, 6700));
+
+  timers.push(setTimeout(() => {
+    activateStep(5);
+    document.getElementById('homeGlow').classList.add('on');
+    document.getElementById('voltageText').style.transition = 'opacity 600ms ease';
+    document.getElementById('voltageText').style.opacity = '1';
+  }, 6950));
+}
+
+replayBtn.addEventListener('click', startSequence);
+
+// Dejar la escena preparada, pero sin iniciar la secuencia al cargar.
+resetScene();
+
+let sequenceStarted = false;
+window.addEventListener('message', (event) => {
+  if (event.data === 'kvolt-start-obras' && !sequenceStarted) {
+    sequenceStarted = true;
+    startSequence();
+  }
+});
+</script>
+</body>
+</html>
