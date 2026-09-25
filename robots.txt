@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /
+
+# STAGING: este archivo evita que la versión de prueba sea indexada.
