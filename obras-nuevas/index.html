@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Instalaciones Eléctricas para Obras Nuevas en Rosario | K-Volt</title>
+<meta name="description" content="Instalaciones eléctricas para casas y obras nuevas en Rosario y Gran Rosario: circuitos, canalizaciones, tableros, cableado, iluminación y puesta en servicio.">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#080808">
+<link rel="canonical" href="https://kvolt.com.ar/obras-nuevas/">
+<link rel="icon" type="image/png" href="../assets/kvolt-isotipo-web.png">
+<meta property="og:locale" content="es_AR"><meta property="og:type" content="website"><meta property="og:site_name" content="K-Volt">
+<meta property="og:title" content="Instalaciones Eléctricas para Obras Nuevas en Rosario | K-Volt"><meta property="og:description" content="Instalaciones eléctricas para casas y obras nuevas en Rosario y Gran Rosario: circuitos, canalizaciones, tableros, cableado, iluminación y puesta en servicio."><meta property="og:url" content="https://kvolt.com.ar/obras-nuevas/"><meta property="og:image" content="https://kvolt.com.ar/assets/empresa.jpg">
+<script type="application/ld+json">{
+  "@context":"https://schema.org",
+  "@graph":[
+    {"@type":"BreadcrumbList","itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Inicio","item":"https://kvolt.com.ar/"},
+      {"@type":"ListItem","position":2,"name":"Instalaciones Eléctricas para Obras Nuevas en Rosario","item":"https://kvolt.com.ar/obras-nuevas/"}
+    ]},
+    {"@type":"Service","name":"Instalaciones eléctricas para obras nuevas","serviceType":"Instalaciones eléctricas para obras nuevas","areaServed":{"@type":"AdministrativeArea","name":"Rosario y Gran Rosario"},"provider":{"@id":"https://kvolt.com.ar/#business"},"url":"https://kvolt.com.ar/obras-nuevas/"}
+  ]
+}</script>
+<link rel="stylesheet" href="../assets/seo-pages.css?v=20260925-5">
+</head>
+<body>
+<header><a class="logo" href="../"><img src="../assets/kvolt-isotipo-web.png" alt=""><span>K-VOLT</span></a><nav><a href="../electricidad-hogar/">Hogar</a><a href="../obras-nuevas/">Obras nuevas</a><a href="../electricidad-empresas/">Comercios y Empresas</a><a href="../climatizacion/">Climatización</a><a href="../urgencias-electricas-rosario/">Urgencias 24 hs</a><a href="../#cobertura">Cobertura</a></nav></header>
+<div class="breadcrumbs"><a href="../">Inicio</a> / OBRAS NUEVAS</div>
+<main>
+<section class="hero hero-obras">
+  <div class="hero-obras-copy">
+    <div class="kicker">OBRAS NUEVAS</div>
+    <h1>La instalación eléctrica pensada desde el inicio de la obra.</h1>
+    <p>Acompañamos obras nuevas y ampliaciones con una distribución eléctrica ordenada, contemplando circuitos, consumos y futuras necesidades de la vivienda o espacio.</p>
+    <div class="actions">
+      <a class="btn primary" href="../?servicio=obras#contacto">Pedir presupuesto</a>
+      <a class="btn ghost" href="https://wa.me/543413217314?text=Hola%20K-Volt%2C%20estoy%20consultando%20por%20una%20obra%20nueva%20%2F%20ampliaci%C3%B3n%20el%C3%A9ctrica." target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
+
+  <div class="hero-obras-visual">
+    <iframe
+      class="hero-obras-frame"
+      id="obraAnimationSeo"
+      src="../obras-nuevas-escena.html"
+      title="Animación K-Volt del recorrido eléctrico desde la acometida hasta el hogar"
+      scrolling="no">
+    </iframe>
+  </div>
+</section>
+<section class="content">
+  <h2>De la distribución a cada ambiente.</h2>
+  <p>Una obra nueva permite planificar la instalación antes de ejecutar. Eso ayuda a ordenar circuitos, recorridos, tableros y puntos de consumo evitando correcciones innecesarias más adelante.</p>
+  <div class="grid">
+    <article class="card"><span>01</span><h3>Planificación de circuitos</h3><p>Organización de circuitos y distribución de cargas de acuerdo con los ambientes y usos previstos.</p></article>
+    <article class="card"><span>02</span><h3>Canalización y cableado</h3><p>Ejecución de recorridos, conductores y puntos eléctricos según el avance de la obra.</p></article>
+    <article class="card"><span>03</span><h3>Tablero y puesta en servicio</h3><p>Armado e integración del tablero y verificación del funcionamiento de la instalación.</p></article>
+  </div>
+</section>
+
+<section class="local local-coverage-link">
+      <div>
+        <h2>Obras eléctricas en Rosario y alrededores.</h2>
+        <p>Evaluamos obras nuevas y ampliaciones en Rosario y distintas localidades de Gran Rosario. Consultá la cobertura completa para ver todas las zonas.</p>
+      </div>
+      <a class="btn coverage-link-btn" href="../#cobertura">Ver zona de cobertura →</a>
+    </section>
+<section class="cta"><h2>Contanos qué necesitás resolver.</h2><p>Describinos el trabajo o la falla. Si podés, sumá información sobre la instalación para que podamos orientarte mejor.</p><a class="btn primary" href="../?servicio=obras#contacto">Enviar consulta</a></section>
+</main>
+<footer><strong>K-VOLT</strong><span>Electricidad · Obras · Comercios y Empresas · Urgencias 24 hs · Climatización residencial</span><small>Rosario y Gran Rosario</small></footer>
+<script>
+const obraAnimationSeo = document.getElementById('obraAnimationSeo');
+if (obraAnimationSeo) {
+  let obraStarted = false;
+  const startObra = () => {
+    if (obraStarted) return;
+    obraStarted = true;
+    obraAnimationSeo.contentWindow?.postMessage('kvolt-start-obras', '*');
+  };
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.16) {
+          setTimeout(startObra, 180);
+          observer.disconnect();
+        }
+      });
+    }, { threshold: [0.16] });
+    observer.observe(obraAnimationSeo);
+  } else {
+    startObra();
+  }
+
+  obraAnimationSeo.addEventListener('load', () => {
+    const rect = obraAnimationSeo.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) setTimeout(startObra, 180);
+  });
+}
+</script>
+</body></html>
