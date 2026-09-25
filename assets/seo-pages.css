@@ -237,3 +237,15 @@ footer{border-top:1px solid #ffffff12;padding:38px 5vw;display:flex;justify-cont
   .local.local-coverage-link{grid-template-columns:1fr}
   .coverage-link-btn{justify-self:start}
 }
+
+/* Urgency landing */
+.hero.emergency-page-hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(380px,.8fr);gap:46px;align-items:stretch;padding:58px 5vw 76px;min-height:auto}
+.emergency-page-copy{min-height:620px;display:flex;flex-direction:column;justify-content:center;padding:36px 18px}.emergency-page-copy h1{max-width:850px;font-size:clamp(3.2rem,5.5vw,6.4rem)}
+.emergency-live{display:flex;align-items:center;gap:10px}.emergency-live i{width:9px;height:9px;border-radius:50%;background:var(--y);box-shadow:0 0 0 0 rgba(255,204,0,.55);animation:urgencyPulse 1.6s ease-out infinite}
+.emergency-page-visual{position:relative;min-height:620px;border-radius:28px;border:1px solid #ffcc0028;background:#050505;overflow:hidden;display:grid;place-items:center;align-content:center;box-shadow:0 30px 90px rgba(0,0,0,.34)}
+.emergency-page-visual:before{content:"";position:absolute;inset:0;background-image:linear-gradient(#ffffff07 1px,transparent 1px),linear-gradient(90deg,#ffffff07 1px,transparent 1px);background-size:38px 38px;mask-image:radial-gradient(circle,#000 18%,transparent 72%)}
+.emergency-page-visual svg{position:relative;z-index:2;width:118px;height:158px;filter:drop-shadow(0 0 24px rgba(255,204,0,.42))}.emergency-page-visual path{fill:var(--y)}
+.emergency-page-visual strong{position:relative;z-index:2;margin-top:14px;font-size:clamp(4rem,8vw,7rem);line-height:.8;letter-spacing:-.07em}.emergency-page-visual small{position:relative;z-index:2;margin-top:16px;color:#777;letter-spacing:.2em;font-weight:900}
+.emergency-page-radar{position:absolute;width:290px;height:290px;border:1px solid rgba(255,204,0,.22);border-radius:50%;animation:urgencyRadar 2.8s ease-out infinite}
+@keyframes urgencyPulse{0%{box-shadow:0 0 0 0 rgba(255,204,0,.5)}70%{box-shadow:0 0 0 12px rgba(255,204,0,0)}100%{box-shadow:0 0 0 0 rgba(255,204,0,0)}}@keyframes urgencyRadar{0%{transform:scale(.72);opacity:.8}100%{transform:scale(1.35);opacity:0}}
+@media(max-width:850px){.hero.emergency-page-hero{grid-template-columns:1fr;padding:42px 18px 64px;gap:28px}.emergency-page-copy{min-height:auto;padding:12px 0 0}.emergency-page-visual{min-height:360px;border-radius:18px}}
