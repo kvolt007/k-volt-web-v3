@@ -1,7 +1,32 @@
 <?php
 declare(strict_types=1);
 
+$isAjax =
+    isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+    strtolower((string)$_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
+
+function respond(bool $success, string $message, bool $isAjax): void {
+    if ($isAjax) {
+        header('Content-Type: application/json; charset=UTF-8');
+        http_response_code($success ? 200 : 422);
+        echo json_encode([
+            'success' => $success,
+            'message' => $message
+        ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        exit;
+    }
+
+    header('Location: ./?contact=' . ($success ? 'ok' : 'error') . '#contacto', true, 303);
+    exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    if ($isAjax) {
+        header('Content-Type: application/json; charset=UTF-8');
+        http_response_code(405);
+        echo json_encode(['success' => false, 'message' => 'Método no permitido.'], JSON_UNESCAPED_UNICODE);
+        exit;
+    }
     header('Location: ./#contacto', true, 303);
     exit;
 }
@@ -14,8 +39,8 @@ function clean(string $value): string {
 
 $honeypot = clean($_POST['empresa_web'] ?? '');
 if ($honeypot !== '') {
-    header('Location: ./?contact=ok#contacto', true, 303);
-    exit;
+    // Respuesta neutra para bots; no revelar la protección.
+    respond(true, 'Consulta recibida.', $isAjax);
 }
 
 $nombre   = clean($_POST['nombre'] ?? '');
@@ -44,8 +69,7 @@ $valid =
     mb_strlen($mensaje) <= 2000;
 
 if (!$valid) {
-    header('Location: ./?contact=error#contacto', true, 303);
-    exit;
+    respond(false, 'Revisá los datos ingresados.', $isAjax);
 }
 
 $to = 'contacto.kvolt@gmail.com';
@@ -60,6 +84,7 @@ $body .= "Consulta:\n{$mensaje}\n";
 
 $host = preg_replace('/[^a-z0-9.-]/i', '', $_SERVER['HTTP_HOST'] ?? 'localhost');
 $fromDomain = $host && strpos($host, '.') !== false ? $host : 'localhost';
+
 $headers = [
     'MIME-Version: 1.0',
     'Content-Type: text/plain; charset=UTF-8',
@@ -69,5 +94,9 @@ $headers = [
 ];
 
 $sent = @mail($to, $subject, $body, implode("\r\n", $headers));
-header('Location: ./?contact=' . ($sent ? 'ok' : 'error') . '#contacto', true, 303);
-exit;
+
+respond(
+    $sent,
+    $sent ? 'Consulta enviada correctamente.' : 'No pudimos enviar la consulta.',
+    $isAjax
+);

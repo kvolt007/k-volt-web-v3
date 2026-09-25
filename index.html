@@ -786,6 +786,79 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--y);outline-offset:4
 .new-build-seo-link{margin-left:auto;color:#ffcc00;font-size:.8rem;font-weight:900}
 @media(max-width:600px){.seo-faq{padding:80px 18px}.new-build-seo-link{width:100%;margin-left:0}}
 
+
+/* K-Volt AJAX contact success overlay */
+.contact-send-overlay{
+  position:fixed;inset:0;z-index:10050;
+  display:grid;place-items:center;
+  padding:24px;
+  background:rgba(3,3,3,.86);
+  backdrop-filter:blur(10px);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .28s ease,visibility .28s ease;
+}
+.contact-send-overlay.show{opacity:1;visibility:visible;pointer-events:auto}
+.contact-send-card{
+  width:min(92vw,520px);
+  min-height:390px;
+  padding:42px 30px 34px;
+  border-radius:28px;
+  border:1px solid rgba(255,255,255,.10);
+  background:
+    radial-gradient(circle at 50% 30%,rgba(255,204,0,.13),transparent 17rem),
+    linear-gradient(145deg,#151515,#080808);
+  box-shadow:0 35px 110px rgba(0,0,0,.55);
+  display:grid;justify-items:center;align-content:center;
+  text-align:center;overflow:hidden;position:relative;
+  transform:translateY(18px) scale(.96);
+  transition:transform .32s cubic-bezier(.2,.8,.2,1);
+}
+.contact-send-overlay.show .contact-send-card{transform:none}
+.contact-send-bolt{width:112px;height:148px;position:relative;filter:drop-shadow(0 0 18px rgba(255,204,0,.28))}
+.contact-send-bolt svg{width:100%;height:100%;overflow:visible}
+.contact-send-bolt path{
+  fill:none;stroke:var(--y);stroke-width:9;stroke-linejoin:round;stroke-linecap:round;
+  stroke-dasharray:500;stroke-dashoffset:500;
+}
+.contact-send-overlay.sending .contact-send-bolt path{
+  animation:contactBoltDraw 1.05s cubic-bezier(.2,.8,.2,1) infinite;
+}
+.contact-send-overlay.success .contact-send-bolt path{
+  stroke-dashoffset:0;fill:var(--y);
+  animation:contactBoltPop .45s cubic-bezier(.2,.9,.2,1) forwards;
+}
+.contact-send-glow{
+  position:absolute;width:190px;height:190px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,204,0,.28),transparent 68%);
+  opacity:.35;transform:scale(.75);
+}
+.contact-send-overlay.sending .contact-send-glow{animation:contactGlow 1.1s ease-in-out infinite alternate}
+.contact-send-overlay.success .contact-send-glow{animation:contactSuccessFlash .58s ease forwards}
+.contact-send-copy small{
+  display:block;margin-top:8px;color:#737373;font-size:.68rem;font-weight:900;letter-spacing:.18em
+}
+.contact-send-copy strong{
+  display:block;margin-top:12px;font-size:clamp(1.8rem,5vw,2.8rem);letter-spacing:-.045em
+}
+.contact-send-copy p{margin:10px auto 0;max-width:390px;color:#9b9b9b;line-height:1.55}
+.contact-send-check{
+  width:52px;height:52px;margin-top:18px;border-radius:50%;display:none;place-items:center;
+  background:var(--y);color:#000;font-size:1.65rem;font-weight:950;
+  box-shadow:0 0 34px rgba(255,204,0,.28)
+}
+.contact-send-overlay.success .contact-send-check{display:grid;animation:contactCheckPop .38s cubic-bezier(.2,.9,.2,1) both}
+.contact-send-overlay.error .contact-send-check{display:grid;background:#fff;color:#111}
+.contact-send-overlay.error .contact-send-bolt path{stroke:#fff;stroke-dashoffset:0}
+.contact-submit[disabled]{opacity:.65;cursor:wait;transform:none!important}
+@keyframes contactBoltDraw{0%{stroke-dashoffset:500;opacity:.55}70%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:-500;opacity:.35}}
+@keyframes contactBoltPop{0%{transform:scale(.8);opacity:.65}60%{transform:scale(1.13);opacity:1}100%{transform:scale(1);opacity:1}}
+@keyframes contactGlow{from{opacity:.18;transform:scale(.72)}to{opacity:.65;transform:scale(1.08)}}
+@keyframes contactSuccessFlash{0%{opacity:.25;transform:scale(.7)}45%{opacity:1;transform:scale(1.28)}100%{opacity:.36;transform:scale(1.05)}}
+@keyframes contactCheckPop{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:scale(1)}}
+@media(prefers-reduced-motion:reduce){
+  .contact-send-overlay,.contact-send-card,.contact-send-bolt path,.contact-send-glow,.contact-send-check{animation:none!important;transition:none!important}
+}
+
 </style>
 </head>
 <body>
@@ -1058,6 +1131,23 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--y);outline-offset:4
 </section>
 </main>
 
+<div class="contact-send-overlay" id="contactSendOverlay" aria-live="assertive" aria-hidden="true">
+  <div class="contact-send-card" role="status">
+    <div class="contact-send-glow" aria-hidden="true"></div>
+    <div class="contact-send-bolt" aria-hidden="true">
+      <svg viewBox="0 0 120 160">
+        <path d="M72 5 29 82h31l-13 73 45-88H61L72 5Z"/>
+      </svg>
+    </div>
+    <div class="contact-send-copy">
+      <small id="contactSendEyebrow">K-VOLT / CONECTANDO</small>
+      <strong id="contactSendTitle">Enviando consulta...</strong>
+      <p id="contactSendText">Estamos procesando tu mensaje.</p>
+    </div>
+    <div class="contact-send-check" id="contactSendCheck" aria-hidden="true">✓</div>
+  </div>
+</div>
+
 <a class="whatsapp-float" href="https://wa.me/543413217314" target="_blank" rel="noopener" aria-label="Consultar por WhatsApp" title="WhatsApp">
   <svg viewBox="0 0 32 32" aria-hidden="true">
     <path d="M16 3.2A12.6 12.6 0 0 0 5.2 22.3L3.6 28.8l6.7-1.5A12.6 12.6 0 1 0 16 3.2Zm0 22.7a10 10 0 0 1-5.1-1.4l-.4-.2-4 .9 1-3.8-.3-.4a10 10 0 1 1 8.8 4.9Zm5.7-7.5c-.3-.2-1.8-.9-2.1-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8.2 8.2 0 0 1-2.5-1.5 9.2 9.2 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.7l.5-.6.3-.6c.1-.2 0-.4 0-.6l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.2-1.2 2.9 1.2 3.3 1.4 3.5c.2.2 2.4 3.7 5.9 5.1.8.4 1.5.6 2 .7.8.3 1.6.2 2.2.1.7-.1 1.8-.8 2.1-1.5.3-.7.3-1.3.2-1.5-.1-.1-.3-.2-.6-.4Z"/>
@@ -1138,25 +1228,87 @@ if (obrasFrame) {
 
 const contactForm = document.getElementById('contactForm');
 const formStatus = document.getElementById('formStatus');
-if (contactForm && formStatus) {
-  const params = new URLSearchParams(window.location.search);
-  const contactState = params.get('contact');
-  const showFormStatus = (message, type) => {
-    formStatus.textContent = message;
-    formStatus.className = 'form-status show ' + type;
-  };
-  if (contactState === 'ok') {
-    showFormStatus('Consulta enviada. Gracias por contactarnos; te responderemos a la brevedad.', 'ok');
-    history.replaceState({}, '', window.location.pathname + '#contacto');
-  } else if (contactState === 'error') {
-    showFormStatus('No pudimos enviar la consulta. Probá nuevamente o escribinos por WhatsApp.', 'error');
-    history.replaceState({}, '', window.location.pathname + '#contacto');
-  }
+const contactSendOverlay = document.getElementById('contactSendOverlay');
+const contactSendEyebrow = document.getElementById('contactSendEyebrow');
+const contactSendTitle = document.getElementById('contactSendTitle');
+const contactSendText = document.getElementById('contactSendText');
+const contactSendCheck = document.getElementById('contactSendCheck');
 
-  contactForm.addEventListener('submit', (event) => {
+if (contactForm && formStatus && contactSendOverlay) {
+  const submitButton = contactForm.querySelector('.contact-submit');
+  const originalButtonHtml = submitButton ? submitButton.innerHTML : '';
+
+  const setOverlayState = (state, title, text) => {
+    contactSendOverlay.className = 'contact-send-overlay show ' + state;
+    contactSendOverlay.setAttribute('aria-hidden','false');
+    contactSendEyebrow.textContent = state === 'sending' ? 'K-VOLT / CONECTANDO' : (state === 'success' ? 'K-VOLT / MENSAJE RECIBIDO' : 'K-VOLT / NO PUDIMOS ENVIAR');
+    contactSendTitle.textContent = title;
+    contactSendText.textContent = text;
+    contactSendCheck.textContent = state === 'error' ? '!' : '✓';
+  };
+
+  const closeOverlay = () => {
+    contactSendOverlay.className = 'contact-send-overlay';
+    contactSendOverlay.setAttribute('aria-hidden','true');
+  };
+
+  contactForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    if (!contactForm.reportValidity()) return;
+
     if (window.location.hostname.endsWith('github.io')) {
-      event.preventDefault();
-      showFormStatus('Vista previa: el envío del formulario se habilita en el sitio alojado en Hostinger.', 'error');
+      formStatus.textContent = 'Vista previa: el envío del formulario se habilita en el sitio alojado en Hostinger.';
+      formStatus.className = 'form-status show error';
+      return;
+    }
+
+    formStatus.className = 'form-status';
+    setOverlayState('sending','Enviando consulta...','Estamos procesando tu mensaje.');
+
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'ENVIANDO...';
+    }
+
+    const startedAt = Date.now();
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: {'Accept':'application/json','X-Requested-With':'XMLHttpRequest'}
+      });
+
+      let result = null;
+      try { result = await response.json(); } catch (_) {}
+
+      if (!response.ok || !result || result.success !== true) {
+        throw new Error(result?.message || 'No pudimos enviar la consulta.');
+      }
+
+      // Mantener visible el rayo al menos un instante para que la transición se perciba.
+      const elapsed = Date.now() - startedAt;
+      if (elapsed < 900) await new Promise(resolve => setTimeout(resolve, 900 - elapsed));
+
+      setOverlayState('success','¡Consulta enviada!','Gracias por contactarte con K-Volt. Te responderemos a la brevedad.');
+      contactForm.reset();
+
+      setTimeout(() => {
+        closeOverlay();
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.innerHTML = originalButtonHtml;
+        }
+      }, 2200);
+
+    } catch (error) {
+      setOverlayState('error','No pudimos enviar la consulta','Probá nuevamente o escribinos directamente por WhatsApp.');
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.innerHTML = originalButtonHtml;
+      }
+      setTimeout(closeOverlay, 3200);
     }
   });
 }
