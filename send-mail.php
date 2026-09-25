@@ -53,6 +53,7 @@ $allowedServices = [
     'Asistencia para mi hogar',
     'Obra nueva / ampliación',
     'Asistencia para mi comercio o empresa',
+    'Urgencia eléctrica 24 horas',
     'Climatización / aire acondicionado',
     'Otro'
 ];
